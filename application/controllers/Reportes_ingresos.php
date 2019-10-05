@@ -128,7 +128,7 @@ class Reportes_ingresos extends CI_Controller
             $this->fpdf->AddPage('P','Letter',null,null);//CREACION DE PAGINA
            
             $col1[] = array_merge(array('text' => utf8_decode('ENTIDAD:'), 'width' => 20, 'fillcolor' => $col_color),$tbl_trasparente1);
-            $col1[] = array_merge(array('text' => utf8_decode("DEFENSORIA DEL PUEBLO "), 'width' => 110, 'fillcolor' => $col_color),$tbl_trasparente2); 
+            $col1[] = array_merge(array('text' => utf8_decode("ALDIDACOM - SOFTWARE"), 'width' => 110, 'fillcolor' => $col_color),$tbl_trasparente2); 
             $col1[] = array_merge(array('text' => utf8_decode('FECHA DE INGRESO:'), 'width' => 33, 'fillcolor' => $col_color),$tbl_trasparente1);
             $col1[] = array_merge(array('text' => utf8_decode($ingresos[0]->fecha), 'width' => 33, 'fillcolor' => $col_color),$tbl_trasparente2);
             $columnas1[] = $col1;

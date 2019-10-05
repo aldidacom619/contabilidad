@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 09-09-2019 a las 00:53:55
+-- Tiempo de generación: 05-10-2019 a las 15:47:45
 -- Versión del servidor: 5.5.20
 -- Versión de PHP: 5.3.10
 
@@ -288,8 +288,8 @@ CREATE TABLE IF NOT EXISTS `ad_usuarios` (
 
 INSERT INTO `ad_usuarios` (`id`, `codad_entidad`, `codad_aplicacion`, `nombres`, `apellidos`, `nro_documento`, `tipo_documento`, `idad_logs`, `direccion`, `tel_cel`, `fecha_nacimiento`, `correo`, `cargo`, `login`, `clave`, `tipo_user`, `estado`) VALUES
 (8, 1, 8, 'DIEGO', 'DAZA ALCARAZ', '6703132', 'CI', 8, 'HEROINAS', '78720504', '1989-11-26', 'aldidacom@gmail.com', 'GERENTE', 'DDAZA.ADMIN', '952c4c39d5460b647fa9f7f4cf36fb13', 'SUPER ADMINISTRADOR', 'AC'),
-(9, 2, 9, 'OSVALDO', 'QUISPE', '1234567', 'CI', 10, 'EL ALTO', '78720504', '1985-11-09', 'osvaldo@gmail.com', 'GERENTE', 'ADMOSVALDO.DSP', '952c4c39d5460b647fa9f7f4cf36fb13', 'ADMINISTRADOR', 'AC'),
-(10, 2, 9, 'ORLANDO', 'QUISPE ARCANI', '5471526', 'CI', 10, 'Avenida Cívica No. 1060 zona Santa Rosa', '78720504', '1983-11-06', 'orlandoquispea@hotmail.com', 'TECNICO CONTABLE', 'OQUISPE.DSP', '952c4c39d5460b647fa9f7f4cf36fb13', 'TECNICO', 'AC');
+(9, 2, 9, 'DIEGO', 'DAZA ALCARAZ', '1234567', 'CI', 10, 'EL ALTO', '78720504', '1985-11-09', 'osvaldo@gmail.com', 'GERENTE', 'DIEGO.ADM', '952c4c39d5460b647fa9f7f4cf36fb13', 'ADMINISTRADOR', 'AC'),
+(10, 2, 9, 'DIEGO', 'DAZA ALCARAZ', '5471526', 'CI', 10, 'Avenida Cívica No. 1060 zona Santa Rosa', '78720504', '1983-11-06', 'orlandoquispea@hotmail.com', 'TECNICO CONTABLE', 'DIEGO2.ADM', '952c4c39d5460b647fa9f7f4cf36fb13', 'TECNICO', 'AC');
 
 -- --------------------------------------------------------
 
