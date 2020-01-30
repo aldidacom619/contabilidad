@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 05-10-2019 a las 15:47:45
+-- Tiempo de generación: 30-01-2020 a las 04:27:58
 -- Versión del servidor: 5.5.20
 -- Versión de PHP: 5.3.10
 
@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `ad_logs` (
   `codad_accion` int(11) DEFAULT NULL,
   `fecha` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=75 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=81 ;
 
 --
 -- Volcado de datos para la tabla `ad_logs`
@@ -131,7 +131,13 @@ INSERT INTO `ad_logs` (`id`, `idad_usuario`, `codad_accion`, `fecha`) VALUES
 (71, 10, 12, '2019-09-08 18:07:00'),
 (72, 10, 12, '2019-09-08 18:07:12'),
 (73, 10, 11, '2019-09-08 18:10:39'),
-(74, 10, 12, '2019-09-08 18:10:58');
+(74, 10, 12, '2019-09-08 18:10:58'),
+(75, 10, 11, '2020-01-30 04:06:40'),
+(76, 10, 12, '2020-01-30 04:07:07'),
+(77, 10, 11, '2020-01-30 04:09:47'),
+(78, 10, 12, '2020-01-30 04:10:01'),
+(79, 10, 11, '2020-01-30 04:12:05'),
+(80, 10, 12, '2020-01-30 04:12:28');
 
 -- --------------------------------------------------------
 
@@ -303,7 +309,7 @@ CREATE TABLE IF NOT EXISTS `cb_beneficiarios` (
   `nombres` varchar(200) NOT NULL,
   `estado` varchar(5) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Volcado de datos para la tabla `cb_beneficiarios`
@@ -319,7 +325,8 @@ INSERT INTO `cb_beneficiarios` (`id`, `codad_entidad`, `nombres`, `estado`) VALU
 (7, 2, 'OSCAR LA HIJA', 'AC'),
 (8, 2, 'JAIME', 'AC'),
 (9, 2, 'FRANCO', 'AC'),
-(10, 2, 'ROMINA', 'AC');
+(10, 2, 'ROMINA', 'AC'),
+(11, 2, 'MARIA RODRIGUEZ', 'AC');
 
 -- --------------------------------------------------------
 
@@ -344,17 +351,10 @@ CREATE TABLE IF NOT EXISTS `cb_cuentas` (
 --
 
 INSERT INTO `cb_cuentas` (`codigo`, `codad_entidad`, `codcb_cuenta`, `denominacion_cuenta`, `descripcion_cuenta`, `nivel`, `registra_valor`, `estado`) VALUES
-(1, 2, 0, 'Bancos', 'Bancos', 1, 0, 'AC'),
-(2, 2, 0, 'Depositos en Garantía', 'Depositos en Garantía', 1, 0, 'AC'),
-(3, 2, 0, 'Cuentas Por Pagar', 'Cuentas Por Pagar', 1, 0, 'AC'),
-(4, 2, 0, 'Cuenta Auxiliar', 'Cuenta Auxiliar', 1, 0, 'AC'),
+(1, 2, 0, 'Banco', 'Bancos', 1, 0, 'AC'),
+(2, 2, 0, 'Fondo Social', 'Fondo Social', 1, 0, 'AC'),
 (5, 2, 1, 'Fondo Rotativo Defensor del Pueblo', 'Fondo Rotativo Defensor del Pueblo', 2, 0, 'AC'),
-(6, 2, 2, 'Fondo Social Defensor del Pueblo', 'Fondo Social Defensor del Pueblo', 2, 1, 'AC'),
-(7, 2, 3, 'Impuestos Por Pagar IUE', 'Impuestos Por Pagar IUE', 2, 0, 'AC'),
-(8, 2, 4, 'Sub Cuenta Auxiliar', 'Sub Cuenta Auxiliar', 2, 0, 'AC'),
-(9, 2, 1, 'Sub cuenta', 'Sub cuenta', 2, 1, 'AC'),
-(10, 2, 2, 'Sub cuenta 2', 'Sub cuenta 2', 2, 1, 'AC'),
-(11, 2, 3, 'Impuesto por pagar IT', 'Impuesto por pagar IT', 2, 0, 'AC');
+(6, 2, 2, 'Fondo Social Defensor del Pueblo', 'Fondo Social Defensor del Pueblo', 2, 1, 'AC');
 
 -- --------------------------------------------------------
 
@@ -381,18 +381,7 @@ CREATE TABLE IF NOT EXISTS `cb_ingresos_egresos` (
   `saldo_debe` decimal(10,2) NOT NULL,
   `estado` varchar(5) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
-
---
--- Volcado de datos para la tabla `cb_ingresos_egresos`
---
-
-INSERT INTO `cb_ingresos_egresos` (`id`, `idcb_ingreso_egreso`, `correlativo`, `cuenta_1`, `cuenta_2`, `monto`, `fecha`, `tipo_cambio`, `documento_respaldo`, `numero_cheque`, `idcb_beneficiario`, `descripcion_transaccion`, `tipo_transaccion`, `idad_logs`, `cantidad_cuentas_egreso`, `saldo_debe`, `estado`) VALUES
-(35, 0, 1, 1, 5, '1000.00', '2019-07-02', '6.97', 'BOLETA DE DEPOSITO', '', 1, 'PRUEBAS DE INGRESO DE MONTOS', 'IN', 70, 2, '0.00', 'TE'),
-(36, 35, 0, 2, 6, '400.00', '2019-07-02', '6.97', 'BOLETA DE DEPOSITO', '', 1, 'PRUEBAS DE INGRESO DE MONTOS PRUEBAS DE INGRESO DE MONTOS PRUEBAS DE INGRESO DE MONTOS PRUEBAS DE INGRESO DE MONTOS PRUEBAS DE INGRESO DE MONTOS', 'IN-CU', 71, 0, '0.00', 'TE'),
-(37, 35, 0, 4, 8, '600.00', '2019-07-02', '6.97', 'BOLETA DE DEPOSITO', '', 1, 'PRUEBAS DE INGRESO DE MONTOS', 'IN-CU', 72, 0, '0.00', 'TE'),
-(38, 0, 2, 2, 6, '200.00', '2019-07-02', '6.97', 'DEPOSITO', '', 3, 'AGASDFASDFASDF', 'EG', 73, 1, '0.00', 'TE'),
-(39, 38, 0, 1, 5, '200.00', '2019-07-02', '6.97', 'DEPOSITO', '54554', 3, 'AGASDFASDFASDF', 'EG-CU', 74, 0, '0.00', 'TE');
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=46 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
