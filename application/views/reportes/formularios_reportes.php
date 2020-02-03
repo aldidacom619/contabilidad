@@ -12,9 +12,9 @@
     <div class="panel panel-default">
 	           
         <div class="modal-body">
-               	<div class="panel panel-default">
+               	<div class="panel panel-default" style="display: none">
 	              		<div class="panel-heading">
-	                            Reporte por Fechas
+	                            Reporte por Fechas de ingresos
 	                    </div>
 					    <div class="row"> 
 			          	<form id="formularioreportesuno">

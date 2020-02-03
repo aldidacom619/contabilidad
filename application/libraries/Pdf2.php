@@ -64,14 +64,12 @@ class Pdf2 extends FPDF {
                 $this->SetY(20);//-16
                 $titulo1=  utf8_decode($this->titulo);
                 $this->Cell(0,0,$titulo1,0,0,'C');
-                $this->Ln(5);
-                //$this->Cell(0,0,utf8_decode($this->titulo1),0,0,'C');
-                
                 $this->SetFont('Times','',12);
-                
                 $this->Ln(5);
                 $this->Cell(0,0,utf8_decode($this->fecha),0,0,'C');
-                 
+                $this->SetFont('Times','B',10);
+                $this->Ln(5);
+                $this->Cell(0,0,utf8_decode($this->titulo1),0,0,'C'); 
         //encabezado grilla
                 $this->Ln(5);
                 $this->SetFillColor(205,205,205); //COLOR A LA GRILLA
@@ -137,7 +135,7 @@ class Pdf2 extends FPDF {
     }
 
     /** @var fransc  * */
-    var $widths;
+var $widths;
 var $aligns;
 var $ah;
 var $aw;
@@ -465,12 +463,14 @@ function RoundedRect($x, $y, $w, $h, $r, $style = '')
     }
     function fechacompleta(){
        $fecha = date('Y-m-j');
-      //  $nuevafecha = strtotime ( '-4 hour' , strtotime ( $fecha ) ) ;
-        //$fecha = date ( 'Y-m-j H:i:s' , $nuevafecha );
-      //  return  $fecha;
+       $nuevafecha = strtotime ( '-4 hour' , strtotime ( $fecha ) ) ;
+       $fecha = date ( 'Y-m-j H:i:s' , $nuevafecha );
+      // return  $fecha;
       
-
-        $GetD = getdate();
+        date_default_timezone_set("America/La_Paz"); // ("America/Santiago") por ejemplo
+        $timestamp = time();
+        $GetD = getdate($timestamp);
+        //$GetD = getdate();
         $verd = array(
         1=>"Lunes",2=>"Martes",3=>"Mi&eacute;rcoles",4=>"Jueves",5=>"Viernes",6=>"Sábado",7=>"Domingo"
         );
@@ -479,8 +479,8 @@ function RoundedRect($x, $y, $w, $h, $r, $style = '')
             8=>"Agosto",9=>"Septiembre",10=>"Octubre",11=>"Noviembre",12=>"Diciembre"
         );
         //return $verd[$GetD['wday']].", ".$GetD['mday']." de ".$verm[$GetD['mon']]." del ".$GetD['year'];
-        //return " ".$GetD['mday']." de ".$verm[$GetD['mon']]." de ".$GetD['year']."  Hora:  ".$GetD['hours'].":".$GetD['minutes'].":".$GetD['seconds'];
-        return " ".$GetD['mday']." de ".$verm[$GetD['mon']]." del ".$GetD['year'];
+        return " ".$GetD['mday']." de ".$verm[$GetD['mon']]." de ".$GetD['year']."  Hora:  ".$GetD['hours'].":".$GetD['minutes'].":".$GetD['seconds'];
+        //return " ".$GetD['mday']." de ".$verm[$GetD['mon']]." del ".$GetD['year'];
     }
     function RowTitle($data) {
         //Calculate the height of the row

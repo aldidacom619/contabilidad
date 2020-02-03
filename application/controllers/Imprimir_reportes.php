@@ -28,20 +28,25 @@ class Imprimir_reportes extends CI_Controller
 	{
 		echo "<h3>Acceso Restringido</h3>";
 	}
-	
+	function cuentas_denominacion($idcuenta)
+        {
+          $cuenta = $this->Cuentas_model->get_cuentas($idcuenta);
+          $denominacion = $cuenta[0]->denominacion_cuenta;
+          return $denominacion;  
+        } 
 	function imprimirporcuentas($subcuenta)
 	{
 		//echo $subcuenta;
 		 $col_color = "255,255,255";
 		  $tbl_cuerpo1 = array('height' => '4', 'align' => 'J', 'font_name' => 'Times', 'font_size' => '6', 'font_style' => '', 'textcolor' => '0,0,0', 'drawcolor' => '0,0,0', 'linewidth' => '0.2', 'linearea' => 'LTBR');
-		    $datos =  $this->reportes_model->reportecuentas();
+		    $datos =  $this->reportes_model->reportecuentas($subcuenta);
             $id = $this->session->userdata('id_per'); 
             $pdf = new Pdf2();
             $fecha_hoy = $pdf->fechacompleta();
             $fecha = date('Y-m-j H:i:s');
             $nuevafecha = strtotime ( 'hour' , strtotime ( $fecha ) ) ;
             $hora = date ( 'H:i:s' , $nuevafecha );
-            $pdf->fecha = "Fecha Impresion:".$fecha_hoy ." Hrs:".$hora; 
+            $pdf->fecha = "Fecha Impresion:".$fecha_hoy; 
             $pdf->xheader = 40;
             $pdf->yheader = 8;
             $pdf->cabecera = 2;
@@ -50,7 +55,7 @@ class Imprimir_reportes extends CI_Controller
             $sum = 0;
             $sum2 = 0;           
             $pdf->titulo = "REPORTE DE INGRESOS Y EGRESOS";
-            $pdf->titulo1 = "";
+            $pdf->titulo1 = "Sub Cuenta: ". $this->cuentas_denominacion($subcuenta);
             $pdf->moneda = "Bolivianos";            
             $pdf->AliasNbPages();
 	        $pdf->SetAutoPageBreak(true, 40); 
@@ -62,7 +67,7 @@ class Imprimir_reportes extends CI_Controller
 	            'CHEQUE',
 	            'DESCRIPCION',
 	            'DEBITO',
-	            'CREDITO',
+	            'HABER',
 	            'SALDO'
 	        );
 	        $w = array(8,15,11,20,85,20,20,20);
@@ -91,22 +96,33 @@ class Imprimir_reportes extends CI_Controller
 	            	foreach($datos as $valor)
 		            {
 		                 
-
-		                 
-		                 if($valor->tipo_transaccion == 'IN'|| $valor->tipo_transaccion =='IN-CU')
-		                 { 
-		                 	$debito = 0;
-		                 	$credito = $valor->monto;
-		                 	$saldo = $saldo + $valor->monto;
-		                 	
-
-		                 }else
-		                 {
-		                 	$debito = $valor->monto;
-		                 	$credito = 0;
-		                 	$saldo = $saldo - $valor->monto;
-		                 	
-		                 }
+	            		switch ($valor->tipo_transaccion) {
+	            			case 'IN':
+	            				$credito = 0;
+			                 	$debito = $valor->monto;
+			                 	$saldo = $saldo + $valor->monto;
+	            				break;
+	            			case 'IN-CU':
+	            				$credito = $valor->monto;
+			                 	$debito = 0;
+			                 	$saldo = $saldo + $valor->monto;
+	            				break;
+	            			case 'EG-CU':
+	            				$credito = $valor->monto;
+			                 	$debito = 0;
+			                 	$saldo = $saldo - $valor->monto;
+	            				break;
+	            			case 'EG':
+	            				$credito = 0;
+			                 	$debito = $valor->monto;
+			                 	$saldo = $saldo - $valor->monto;
+	            				break;
+	            			
+	            			default:
+	            				# code...
+	            				break;
+	            		}		                 
+		               
 		                 if ($num == 1)
 			                {
 			                  $saldo= $valor->monto;
